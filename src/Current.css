@@ -3,12 +3,6 @@ body {
   color: #1995a8;
 }
 
-form {
-  color: #d3cce3;
-  width: 50%;
-  margin: 0 auto;
-}
-
 .Current {
   padding: 16px;
   margin: 60px auto;
@@ -23,6 +17,9 @@ form {
     rgb(245, 245, 245) 0%,
     rgba(175, 175, 175) 94%
   );
+  -webkit-box-shadow: 6px 7px 18px -6px rgba(145, 145, 145, 1);
+  -moz-box-shadow: 6px 7px 18px -6px rgba(145, 145, 145, 1);
+  box-shadow: 6px 7px 18px -6px rgba(145, 145, 145, 1);
 }
 
 .Weather li {

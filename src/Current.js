@@ -4,23 +4,6 @@ import "./Current.css";
 export default function Current() {
   return (
     <div className="Weather">
-      <div className="row">
-        <form>
-          <div className="col">
-            <input
-              type="search"
-              placeholder="Enter a city.."
-              className="form-control"
-              autoFocus="on"
-            />
-          </div>
-          <div className="col">
-            <button type="button" className="btn btn-outline-info">
-              Search
-            </button>
-          </div>
-        </form>
-      </div>
       <div className="Current">
         <div className="row">
           <h3 className="CityName">Lisbon</h3>
