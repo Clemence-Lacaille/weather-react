@@ -1,15 +1,9 @@
 import React from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>Coucou</p>
-      </header>
-    </div>
-  );
-}
+import Weather from "./Weather";
 
-export default App;
+export default function App() {
+  return <Weather />;
+}
