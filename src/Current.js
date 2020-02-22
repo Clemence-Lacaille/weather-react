@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import "./Current.css";
 
 export default function Current() {
@@ -18,7 +19,7 @@ export default function Current() {
           </div>
           <div className="col-sm">
             <img
-              className="Icon"
+              className="Icontop"
               src="https://ssl.gstatic.com/onebox/weather/48/sunny.png"
               alt="weatherIcon"
             />

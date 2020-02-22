@@ -50,18 +50,18 @@ body {
   left: -12px;
   top: -5px;
 }
-.Icon {
+.Icontop {
   width: 70%;
   position: relative;
   top: -16px;
-  left: 30px;
+  left: 15px;
 }
 .Description {
   font-size: 32px;
   font-weight: 100;
   line-height: 19px;
   position: relative;
-  left: 20px;
+  left: 22px;
 }
 .Temperature {
   font-size: 50px;
