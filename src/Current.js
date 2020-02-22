@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Current.css";
+import FormattedDate from "./FormattedDate";
 
 export default function Current() {
   const [weather, setWeather] = useState({ ready: false });
+
   function HandleResponse(response) {
     setWeather({
       ready: true,
       temperature: response.data.main.temp,
+      date: new Date(response.data.dt * 1000),
       city: response.data.name,
-
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       description: response.data.weather[0].description
@@ -24,11 +26,12 @@ export default function Current() {
           </div>
           <div className="row">
             <div className="col-sm">
-              <p className="Date">12/02/2020</p>
+              <p className="Date">
+                <FormattedDate date={weather.date} />
+              </p>
               <ul className="WeatherInfo">
-                <li>Precipitation: </li>
-                <li>Wind: {Math.round(weather.wind)}</li>
-                <li>Humidity: {weather.humidity}</li>
+                <li>Wind: {Math.round(weather.wind)} km/h</li>
+                <li>Humidity: {weather.humidity} %</li>
               </ul>
             </div>
             <div className="col-sm">

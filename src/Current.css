@@ -23,7 +23,7 @@ body {
 }
 
 .Weather li {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 100;
   line-height: 19px;
   list-style: none;
@@ -47,7 +47,7 @@ body {
   margin: 5px;
   padding: 5px;
   position: relative;
-  left: -12px;
+  left: -13px;
   top: -5px;
 }
 .Icontop {
@@ -57,12 +57,18 @@ body {
   left: 32px;
 }
 .Description {
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 100;
   line-height: 19px;
   position: relative;
   left: 32px;
+  text-decoration: capit;
 }
+
+.Description::first-letter {
+  text-transform: capitalize;
+}
+
 .Temperature {
   font-size: 50px;
   font-weight: bold;
