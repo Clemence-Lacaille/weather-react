@@ -1,36 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./Current.css";
 
 export default function Current() {
-  return (
-    <div className="Weather">
-      <div className="Current">
-        <div className="row">
-          <h3 className="CityName">Lisbon</h3>
-        </div>
-        <div className="row">
-          <div className="col-sm">
-            <p className="Date">12/02/2020</p>
-            <ul className="WeatherInfo">
-              <li>Précipitation</li>
-              <li>Wind</li>
-            </ul>
+  const [weather, setWeather] = useState({ ready: false });
+  function HandleResponse(response) {
+    setWeather({
+      ready: true,
+      temperature: response.data.main.temp,
+      city: response.data.name,
+
+      humidity: response.data.main.humidity,
+      wind: response.data.wind.speed,
+      description: response.data.weather[0].description
+    });
+  }
+  if (weather.ready) {
+    return (
+      <div className="Weather">
+        <div className="Current">
+          <div className="row">
+            <h3 className="CityName">{weather.city}</h3>
           </div>
-          <div className="col-sm">
-            <img
-              className="Icontop"
-              src="https://ssl.gstatic.com/onebox/weather/48/sunny.png"
-              alt="weatherIcon"
-            />
-            <p className="Description">Rainy</p>
-          </div>
-          <div className="col-sm">
-            <p className="Temperature">22°C</p>
+          <div className="row">
+            <div className="col-sm">
+              <p className="Date">12/02/2020</p>
+              <ul className="WeatherInfo">
+                <li>Precipitation: </li>
+                <li>Wind: {Math.round(weather.wind)}</li>
+                <li>Humidity: {weather.humidity}</li>
+              </ul>
+            </div>
+            <div className="col-sm">
+              <img
+                className="Icontop"
+                src="https://ssl.gstatic.com/onebox/weather/48/sunny.png"
+                alt="weatherIcon"
+              />
+              <p className="Description">{weather.description}</p>
+            </div>
+            <div className="col-sm">
+              <p className="Temperature">{Math.round(weather.temperature)}</p>
+            </div>
+            <div className="col- degre">
+              <a href="/">ºC</a> | <a href="/">ºF</a>
+            </div>
           </div>
         </div>
       </div>
-      <div />
-    </div>
-  );
+    );
+  } else {
+    let apiKey = "702a27453c60ab3e15c6101724f06473";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Lisbon&units=metric&appid=${apiKey}`;
+    axios.get(apiUrl).then(HandleResponse);
+    return "Wait";
+  }
 }
