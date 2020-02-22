@@ -1,6 +1,7 @@
 .Forecast {
+  text-align: center;
   padding: 16px;
-  margin: 60px auto;
+  margin: 30px auto;
   max-width: 500px;
   background-color: transparent;
   border: 1px solid darkgrey;
@@ -12,4 +13,17 @@
     rgb(245, 245, 245) 0%,
     rgba(175, 175, 175) 94%
   );
+}
+
+.Icon {
+  width: 40%;
+  position: relative;
+  top: -2px;
+}
+
+.days {
+  text-align: center;
+}
+.row .col {
+  height: 100px;
 }
