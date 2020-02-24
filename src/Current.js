@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Current.css";
 import FormattedDate from "./FormattedDate";
+import WeatherIcon from "./WeatherIcon.js";
 
-export default function Current() {
+export default function Current(props) {
   const [weather, setWeather] = useState({ ready: false });
-
+  const [city, setCity] = useState(props.defaultCity);
   function HandleResponse(response) {
     setWeather({
       ready: true,
@@ -14,12 +15,39 @@ export default function Current() {
       city: response.data.name,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
-      description: response.data.weather[0].description
+      description: response.data.weather[0].description,
+      icon: response.data.weather[0].icon
     });
   }
+  function search() {
+    let apiKey = "702a27453c60ab3e15c6101724f06473";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+    axios.get(apiUrl).then(HandleResponse);
+  }
+
+  function HandleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function HandleCityChange(event) {
+    setCity(event.target.value);
+  }
+
   if (weather.ready) {
     return (
       <div className="Weather">
+        <form onSubmit={HandleSubmit} className="citysearch">
+          <input
+            type="search"
+            placeholder="Enter a city"
+            className="search-text-input"
+            autocomplete="off"
+            onChange={HandleCityChange}
+          />
+          <button id="searchcity"> Search</button>
+        </form>
+
         <div className="Current">
           <div className="row">
             <h3 className="CityName">{weather.city}</h3>
@@ -30,16 +58,15 @@ export default function Current() {
                 <FormattedDate date={weather.date} />
               </p>
               <ul className="WeatherInfo">
-                <li>Wind: {Math.round(weather.wind)} km/h</li>
-                <li>Humidity: {weather.humidity} %</li>
+                <li>Wind: {Math.round(weather.wind)}</li>
+                <li>Humidity: {weather.humidity}</li>
               </ul>
             </div>
             <div className="col-sm">
-              <img
-                className="Icontop"
-                src="https://ssl.gstatic.com/onebox/weather/48/sunny.png"
-                alt="weatherIcon"
-              />
+              <div lassName="Icontop">
+                <WeatherIcon code={weather.icon} alt={weather.description} />
+              </div>
+
               <p className="Description">{weather.description}</p>
             </div>
             <div className="col-sm">
@@ -53,9 +80,7 @@ export default function Current() {
       </div>
     );
   } else {
-    let apiKey = "702a27453c60ab3e15c6101724f06473";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Lisbon&units=metric&appid=${apiKey}`;
-    axios.get(apiUrl).then(HandleResponse);
+    search();
     return "Wait";
   }
 }

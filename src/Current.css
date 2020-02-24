@@ -50,12 +50,7 @@ body {
   left: -13px;
   top: -5px;
 }
-.Icontop {
-  width: 70%;
-  position: relative;
-  top: -16px;
-  left: 32px;
-}
+
 .Description {
   font-size: 26px;
   font-weight: 100;
@@ -81,4 +76,9 @@ body {
 .degre {
   position: relative;
   left: -30px;
+}
+
+canvas {
+  position: relative;
+  left: 50px;
 }

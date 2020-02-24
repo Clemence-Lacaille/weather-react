@@ -1,6 +1,6 @@
 import React from "react";
 import "./Forecast.css";
-/*changé dispo forecast*/
+
 export default function Forecast() {
   return (
     <div className="Forecast">
