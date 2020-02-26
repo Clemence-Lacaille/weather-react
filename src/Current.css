@@ -4,22 +4,19 @@ body {
 }
 
 .Current {
-  padding: 16px;
-  margin: 30px auto;
-  max-width: 500px;
+  padding: 35px;
+  margin: 70px auto;
+  max-width: 700px;
   background-color: transparent;
   border: 1px solid darkgrey;
   border-radius: 10px;
   border-radius: 30px;
-  background: rgb(255, 255, 255);
-  background: radial-gradient(
-    circle,
-    rgb(245, 245, 245) 0%,
-    rgba(175, 175, 175) 94%
-  );
-  -webkit-box-shadow: 6px 7px 18px -6px rgba(145, 145, 145, 1);
-  -moz-box-shadow: 6px 7px 18px -6px rgba(145, 145, 145, 1);
-  box-shadow: 6px 7px 18px -6px rgba(145, 145, 145, 1);
+}
+
+.Icontop {
+  position: relative;
+  top: -20px;
+  left: 40px;
 }
 
 .Weather li {
@@ -56,7 +53,8 @@ body {
   font-weight: 100;
   line-height: 19px;
   position: relative;
-  left: 5px;
+  left: 2px;
+  top: -20px;
   text-decoration: capit;
   text-align: center;
 }
@@ -70,14 +68,8 @@ body {
   font-weight: bold;
   line-height: 60px;
   position: relative;
-  top: -2px;
+  top: -30px;
   right: -40px;
-}
-
-canvas {
-  position: relative;
-  left: 40px;
-  top: -5px;
 }
 
 button {

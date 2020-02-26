@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Current.css";
 import FormattedDate from "./FormattedDate";
-import WeatherIcon from "./WeatherIcon.js";
+
 import WeatherTemperature from "./WeatherTemperature";
 import Forecast from "./Forecast";
 import Loader from "react-loader-spinner";
@@ -19,7 +19,7 @@ export default function Current(props) {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       description: response.data.weather[0].description,
-      icon: response.data.weather[0].icon
+      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     });
   }
   function search() {
@@ -66,8 +66,8 @@ export default function Current(props) {
               </ul>
             </div>
             <div className="col-sm">
-              <div lassName="Icontop">
-                <WeatherIcon code={weather.icon} alt={weather.description} />
+              <div className="Icontop">
+                <img src={weather.icon} alt={props.description} />
               </div>
 
               <p className="Description">{weather.description}</p>

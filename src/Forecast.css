@@ -1,20 +1,19 @@
 .Forecast {
   text-align: center;
-  padding: 130px;
-  margin: 70px;
-  max-width: 500px;
+  max-width: 400px;
 }
 
 .Icon {
-  width: 10%;
+  width: 5%;
   position: relative;
-  top: 5px;
-  left: -36px;
+  top: -15px;
+  left: -5px;
 }
 
 .temperatures {
   position: relative;
-  left: 20px;
+  left: 30px;
+  top: -25px;
 }
 
 .hours {

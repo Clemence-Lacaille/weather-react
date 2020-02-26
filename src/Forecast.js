@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Forecast.css";
-import WeatherIcon from "./WeatherIcon";
+
 import axios from "axios";
 
 export default function WeatherForecast(props) {
@@ -8,6 +8,7 @@ export default function WeatherForecast(props) {
   const [forecast, setForecast] = useState(null);
 
   function HandleResponse(response) {
+    console.log(response);
     setForecast(response.data);
     setLoaded(true);
   }
@@ -33,7 +34,10 @@ export default function WeatherForecast(props) {
                 {formatHours(new Date(weather.dt * 1000))}
               </div>
               <div className="Icon">
-                <WeatherIcon code={weather.weather[0].icon} />
+                <img
+                  src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                  alt=""
+                />
               </div>
               <div className="temperatures">
                 {Math.round(weather.main.temp)}°C
