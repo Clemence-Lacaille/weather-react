@@ -1,10 +1,11 @@
 .WeatherTemperature {
   position: relative;
-  top: 0px;
+  top: 40px;
   right: 20px;
 }
 
 .units {
   position: relative;
-  right: -40px;
+  right: -95px;
+  top: -70px;
 }
