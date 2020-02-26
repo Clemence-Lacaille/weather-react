@@ -3,16 +3,14 @@ import "./Forecast.css";
 import WeatherIcon from "./WeatherIcon";
 import axios from "axios";
 
-export default function Forecast(props) {
+export default function WeatherForecast(props) {
   const [loaded, setLoaded] = useState(false);
   const [forecast, setForecast] = useState(null);
 
   function HandleResponse(response) {
-    console.log(response);
-    setForecast(response.data.list.slice(0, 5));
+    setForecast(response.data);
     setLoaded(true);
   }
-
   function formatHours(date) {
     let hours = date.getHours();
     if (hours < 10) {
@@ -25,26 +23,24 @@ export default function Forecast(props) {
     return `${hours}:${minutes}`;
   }
 
-  if (loaded) {
+  if (loaded && forecast.city.name === props.city) {
     return (
-      <div className="Forecast">
-        <div className="row">
-          {forecast.map(function(weather) {
-            return (
-              <div className="col">
-                <div className="hours">
-                  {" "}
-                  {formatHours(new Date(weather.dt * 1000))}
-                </div>
-                <div className="Icon">
-                  {" "}
-                  <WeatherIcon code={weather.weather[0].icon} />
-                </div>
-                <div>{Math.round(weather.main.temp)}ºC</div>
+      <div className="WeatherForecast row">
+        {forecast.list.slice(0, 5).map(function(weather) {
+          return (
+            <div className="col">
+              <div className="hours">
+                {formatHours(new Date(weather.dt * 1000))}
               </div>
-            );
-          })}
-        </div>
+              <div className="Icon">
+                <WeatherIcon code={weather.weather[0].icon} />
+              </div>
+              <div className="temperatures">
+                {Math.round(weather.main.temp)}°C
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   } else {

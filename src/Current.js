@@ -5,6 +5,7 @@ import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon.js";
 import WeatherTemperature from "./WeatherTemperature";
 import Forecast from "./Forecast";
+import Loader from "react-loader-spinner";
 
 export default function Current(props) {
   const [weather, setWeather] = useState({ ready: false });
@@ -81,6 +82,6 @@ export default function Current(props) {
     );
   } else {
     search();
-    return "Wait";
+    return <Loader type="Oval" color="#1995a8" height={40} width={40} />;
   }
 }
