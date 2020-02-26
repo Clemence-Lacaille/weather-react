@@ -56,8 +56,9 @@ body {
   font-weight: 100;
   line-height: 19px;
   position: relative;
-  left: 32px;
+  left: 5px;
   text-decoration: capit;
+  text-align: center;
 }
 
 .Description::first-letter {
@@ -73,12 +74,18 @@ body {
   right: -40px;
 }
 
-.degre {
-  position: relative;
-  left: -30px;
-}
-
 canvas {
   position: relative;
-  left: 50px;
+  left: 40px;
+  top: -5px;
+}
+
+button {
+  border: 1px solid darkgrey;
+  border-radius: 10px;
+  border-radius: 30px;
+}
+
+button:hover {
+  color: #1995a8;
 }

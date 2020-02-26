@@ -1,15 +1,14 @@
 import React from "react";
-import axios from "axios";
+
 import Current from "./Current";
-import Forecast from "./Forecast";
 
 import "./Weather.css";
 
-export default function Weather() {
+export default function Weather(props) {
   return (
     <div className="weather">
       <Current defaultCity="New Orleans" />
-      <Forecast />
+
       <small>
         <a href="https://github.com/Clemence-Lacaille/weather-react">
           Open source code

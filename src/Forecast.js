@@ -1,72 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Forecast.css";
+import WeatherIcon from "./WeatherIcon";
+import axios from "axios";
 
-export default function Forecast() {
-  return (
-    <div className="Forecast">
-      <div class="row">
-        <div class="col-md-5th-1 col-sm-2 col-md-offset-0 col-sm-offset-2">
-          Monday
-        </div>
-        <div class="col-md-5th-1 col-sm-2">Tuesday</div>
-        <div class="col-md-5th-1 col-sm-2">Wednesday</div>
-        <div class="col-md-5th-1 col-sm-2">Thursday</div>
-        <div class="col-md-5th-1 col-sm-2">Friday</div>
-        <div class="col-md-5th-1 col-sm-2">Saturday</div>
-      </div>
+export default function Forecast(props) {
+  const [loaded, setLoaded] = useState(false);
+  const [forecast, setForecast] = useState(null);
 
-      <div className="row icons">
-        <div className="col-md-2">
-          <img
-            className="Icon"
-            src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
-            alt="weatherIcon"
-          />
-        </div>
-        <div className="col-md-2">
-          <img
-            className="Icon"
-            src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
-            alt="weatherIcon"
-          />
-        </div>
-        <div className="col-md-2">
-          <img
-            className="Icon"
-            src="https://ssl.gstatic.com/onebox/weather/48/sunny.png"
-            alt="weatherIcon"
-          />
-        </div>
-        <div className="col-md-2">
-          <img
-            className="Icon"
-            src="https://ssl.gstatic.com/onebox/weather/48/sunny.png"
-            alt="weatherIcon"
-          />
-        </div>
-        <div className="col-md-2">
-          <img
-            className="Icon"
-            src="https://ssl.gstatic.com/onebox/weather/48/sunny.png"
-            alt="weatherIcon"
-          />
-        </div>
-        <div className="col-md-2">
-          <img
-            className="Icon"
-            src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
-            alt="weatherIcon"
-          />
+  function HandleResponse(response) {
+    console.log(response);
+    setForecast(response.data.list.slice(0, 5));
+    setLoaded(true);
+  }
+
+  function formatHours(date) {
+    let hours = date.getHours();
+    if (hours < 10) {
+      hours = `0${hours}`;
+    }
+    let minutes = date.getMinutes();
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+    return `${hours}:${minutes}`;
+  }
+
+  if (loaded) {
+    return (
+      <div className="Forecast">
+        <div className="row">
+          {forecast.map(function(weather) {
+            return (
+              <div className="col">
+                <div className="hours">
+                  {" "}
+                  {formatHours(new Date(weather.dt * 1000))}
+                </div>
+                <div className="Icon">
+                  {" "}
+                  <WeatherIcon code={weather.weather[0].icon} />
+                </div>
+                <div>{Math.round(weather.main.temp)}ºC</div>
+              </div>
+            );
+          })}
         </div>
       </div>
-      <div className="row temperatures">
-        <div className="col-md-2">21</div>
-        <div className="col-md-2">21</div>
-        <div className="col-md-2">21</div>
-        <div className="col-md-2">21</div>
-        <div className="col-md-2">21</div>
-        <div className="col-md-2">21</div>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    let apiKey = "702a27453c60ab3e15c6101724f06473";
+
+    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(HandleResponse);
+    return null;
+  }
 }

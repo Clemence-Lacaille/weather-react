@@ -1,7 +1,6 @@
 small {
-  position: relative;
-  left: 530px;
-  top: -25px;
+  position: absolute;
+  text-align: center;
 }
 
 form {

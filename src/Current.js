@@ -3,6 +3,8 @@ import axios from "axios";
 import "./Current.css";
 import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon.js";
+import WeatherTemperature from "./WeatherTemperature";
+import Forecast from "./Forecast";
 
 export default function Current(props) {
   const [weather, setWeather] = useState({ ready: false });
@@ -69,13 +71,11 @@ export default function Current(props) {
 
               <p className="Description">{weather.description}</p>
             </div>
-            <div className="col-sm">
-              <p className="Temperature">{Math.round(weather.temperature)}</p>
-            </div>
-            <div className="col- degre">
-              <a href="/">ºC</a> | <a href="/">ºF</a>
+            <div className="col-sm degre">
+              <WeatherTemperature celsius={weather.temperature} />
             </div>
           </div>
+          <Forecast city={weather.city} />
         </div>
       </div>
     );

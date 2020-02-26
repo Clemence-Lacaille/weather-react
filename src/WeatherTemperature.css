@@ -1,0 +1,9 @@
+.WeatherTemperature {
+  position: relative;
+  top: 0px;
+  right: 20px;
+}
+
+.units {
+  position: static;
+}
